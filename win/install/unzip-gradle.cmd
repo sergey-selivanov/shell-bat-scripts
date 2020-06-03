@@ -9,7 +9,6 @@ set filename=%~n1
 : see set /? for = substitution
 set dirname=%filename:-bin=%
 
-
 : set env var from result of other command: set env var from 1st line of file
 : set tmpfile=%TEMP%\%~n0.temp
 : echo blabla > %tmpfile%
@@ -18,15 +17,11 @@ set dirname=%filename:-bin=%
 : replace string in env var
 : echo dirname=%filename:-bin=%
 
-
 %CYGWINBINDIR%\unzip -u %1 -d %TARGETDIR%
 copy %TARGETDIR%\%dirname%\bin\gradle.bat %TARGETDIR%\%dirname%\bin\g.cmd
 copy gradle\gupd.cmd %TARGETDIR%\%dirname%\bin
 
-: pushd c:\bin
-: link-gradle.cmd does chdir to c:\bin
-c:\bin\nircmdc.exe elevate c:\bin\link-gradle.cmd %dirname% 
-: popd
+call c:\bin\link-dir.cmd %TARGETDIR%\%dirname% %TARGETDIR%\gradle
 
 goto end
 
