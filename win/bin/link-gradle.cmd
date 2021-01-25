@@ -1,16 +1,13 @@
-rem echo %~dp0
-
 if "" == "%1" goto warn
 
-pushd %~dp0
-rd gradle
-mklink /d gradle %1
-popd
+set TARGETDIR=c:\bin
+
+call c:\bin\link-dir.cmd %TARGETDIR%\%1 %TARGETDIR%\gradle
 
 goto end
 
 :warn
 
-echo Usage: %~nx0 gradle-6.4.1
+echo Usage: %~nx0 gradle-x.x.x-dir
 
 :end

@@ -1,11 +1,13 @@
 if "" == "%1" goto warn
 
-rd jdk8
-mklink /d jdk8 %1
+set TARGETDIR=c:\bin
+
+call c:\bin\link-dir.cmd %TARGETDIR%\%1 %TARGETDIR%\jdk8
+
 goto end
 
 :warn
 
-echo argument needed
+echo Usage: %~nx0 jdk8-x.x.x-dir
 
 :end
